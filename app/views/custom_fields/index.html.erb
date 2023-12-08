@@ -1,0 +1,8 @@
+<!-- app/views/custom_fields/index.html.erb -->
+<h1>Custom Fields</h1>
+<ul>
+  <% @custom_fields.each do |custom_field| %>
+    <li><strong><%= custom_field.field_name %>:</strong> <%= custom_field.default_value %></li>
+  <% end %>
+</ul>
+<%= link_to 'Back', user_path(@user) %>

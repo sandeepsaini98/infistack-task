@@ -1,0 +1,7 @@
+<!-- app/views/custom_fields/_form.html.erb -->
+<%= form_with(model: [ @user, @user.custom_fields.build ], local: true) do |form| %>
+  <p>Field Name: <%= form.text_field :field_name %></p>
+  <p>Input Type: <%= form.text_field :input_type %></p>
+  <p>Default Value: <%= form.text_field :default_value %></p>
+  <p><%= form.submit %></p>
+<% end %>

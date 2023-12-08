@@ -1,0 +1,9 @@
+<% if user_signed_in? %> 
+  <h1>Hello User Crud!</h1>
+   <div> Welcome <%= current_user.email %> </div> 
+  <%= link_to 'List Users', users_path %>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+<% else %>
+  <h4> Please Sign In </h4>
+  <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
