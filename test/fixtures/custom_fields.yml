@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  field_name: MyString
+  input_type: MyString
+  default_value: MyString
+
+two:
+  user: two
+  field_name: MyString
+  input_type: MyString
+  default_value: MyString

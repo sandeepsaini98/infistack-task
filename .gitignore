@@ -34,3 +34,11 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .env
+.byebug_history
+.ruby-version
+log/
+node_modules/
+storage/
+tmp/
+vendor/
+yarn.lock
