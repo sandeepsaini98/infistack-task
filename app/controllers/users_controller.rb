@@ -29,8 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    inputs = user_params
-    rv = @user.update_profile(inputs.merge!(custom_field_id: params[:user]['custom_fields_attributes']['0']['id']))
+    rv = @user.update_profile(user_params)
     if (rv[:error])
       render :edit
     end
@@ -51,6 +50,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :mobile_number, custom_fields_attributes: [:field_name, :input_type, :default_value])
+    params.require(:user).permit(:name, :email, :password, :mobile_number)
   end
 end

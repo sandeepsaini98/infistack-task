@@ -1,4 +1,10 @@
 <!-- app/views/users/new.html.erb -->
 <h1>New User</h1>
-<%= render 'form' %>
+<%= form_with(model: @user, local: true) do |form| %>
+  <p>Name: <%= form.text_field :name %></p>
+  <p>Email: <%= form.text_field :email %></p>
+  <p>Password: <%= form.password_field :password %></p>
+  <p>Mobile Number: <%= form.text_field :mobile_number %></p>
+  <p><%= form.submit %></p>
+<% end %>
 <%= link_to 'Back', users_path %>
