@@ -30,11 +30,7 @@ class User < ApplicationRecord
   end
 
   def create_custom_fields(inputs)
-    custom_field = CustomField.new(inputs)
-    custom_field.user = self
-    custom_field.save!
-
-    return { success: true }
+    CustomField.create_new(inputs, self)
   end
   
   def update_profile(inputs)

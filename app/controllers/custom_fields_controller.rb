@@ -1,21 +1,33 @@
 class CustomFieldsController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:create, :new, :show, :index]
+  before_action :set_custom_field, only: [:edit, :update]
 
   def index
     @custom_fields = @user.custom_fields
+  end
+
+  def show
   end
 
   def new
     @custom_field = {}
   end
 
+  def edit
+    @custom_field = CustomField.find(params[:id])
+  end
+
+  def update
+    rv = @custom_field.update_self(create_params)
+  end
+
   def create
-    @user.custom_fields.merge!(custom_field_params)
-    if @user.save
-      redirect_to user_custom_fields_path(@user), notice: 'Custom field was successfully created.'
-    else
-      render :new
+    rv = CustomField.create_new(create_params, @user)
+    if (rv[:error])
+      render :rv
     end
+
+    redirect_to @user, notice: 'Custom Field was successfully added.'
   end
 
   private
@@ -24,7 +36,15 @@ class CustomFieldsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def custom_field_params
+  def set_custom_field
+    @custom_field = CustomField.find(params[:id])
+  end
+
+  def create_params
+    params.require(:custom_field).permit(:field_name, :input_type, :default_value)
+  end
+
+  def update_params
     params.require(:custom_field).permit(:field_name, :input_type, :default_value)
   end
 end

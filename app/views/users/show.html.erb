@@ -6,13 +6,17 @@
   <h2>Custom Fields</h2>
   <ul>
     <% @user.custom_fields.each do |custom_field| %>
-      <li><strong><%= custom_field.field_name %>:</strong> <%= custom_field.default_value %></li>
+      <li>
+        <strong><%= custom_field.field_name %>:</strong> <%= custom_field.default_value %> |
+        <%= link_to 'Edit', edit_user_custom_field_path(@user, custom_field) %>
+      </li>
     <% end %>
   </ul>
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path %> |
+<%= link_to 'Add Custom Field', new_user_custom_field_path(@user)%>
 
 <% if user_signed_in? %>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
