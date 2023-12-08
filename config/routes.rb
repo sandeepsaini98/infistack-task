@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       delete 'destroy_user', to: 'users#destroy_user'
     end
 
-    resources :custom_fields, only: [:index, :new, :create]
+    resources :custom_fields
   end
   root "home#index" 
 end

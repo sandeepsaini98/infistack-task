@@ -1,15 +1,9 @@
-<!-- app/views/users/_form.html.erb -->
 <%= form_with(model: @user, local: true) do |form| %>
   <p>Name: <%= form.text_field :name %></p>
   <p>Email: <%= form.text_field :email %></p>
   <p>Password: <%= form.password_field :password %></p>
   <p>Mobile Number: <%= form.text_field :mobile_number %></p>
 
-  <%= form.fields_for :custom_fields do |custom_field_form| %>
-    <p>Field Name: <%= custom_field_form.text_field :field_name %></p>
-    <p>Input Type: <%= custom_field_form.text_field :input_type %></p>
-    <p>Default Value: <%= custom_field_form.text_field :default_value %></p>
-  <% end %>
-
+  <%= link_to "List Custom Fields", user_custom_fields_path(@user) %>
   <p><%= form.submit %></p>
 <% end %>

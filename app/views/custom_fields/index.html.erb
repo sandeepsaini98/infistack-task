@@ -1,8 +1,13 @@
-<!-- app/views/custom_fields/index.html.erb -->
-<h1>Custom Fields</h1>
-<ul>
-  <% @custom_fields.each do |custom_field| %>
-    <li><strong><%= custom_field.field_name %>:</strong> <%= custom_field.default_value %></li>
-  <% end %>
-</ul>
+<% if @user.custom_fields.present? %>
+  <h2>Custom Fields</h2>
+  <ul>
+    <% @user.custom_fields.each do |custom_field| %>
+      <li>
+        <strong><%= custom_field.field_name %>:</strong> <%= custom_field.default_value %> |
+        <%= link_to 'Edit', edit_user_custom_field_path(@user, custom_field) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to 'Add Custom Field', new_user_custom_field_path(@user)%> </br> |
 <%= link_to 'Back', user_path(@user) %>
