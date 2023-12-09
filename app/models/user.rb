@@ -13,7 +13,6 @@ class User < ApplicationRecord
       user = User.new(user_inputs)
       user.save!
 
-      user.create_custom_fields(inputs['custom_fields_attributes']['0'])
       return { success: true, user: user}
     end
   end #__End of class << self
@@ -34,32 +33,8 @@ class User < ApplicationRecord
   end
   
   def update_profile(inputs)
-    rv = validate_custom_field(inputs['custom_field_id'])
-    if (rv[:error])
-      return rv
-    end
-
-    custom_field = rv[:custom_field]
-    custom_field.update_self(inputs['custom_fields_attributes']['0'])
-
-    user_inputs = inputs.slice(:name, :email, :mobile_number)
     self.update!(user_inputs)
 
     return { success: true, user: self }
-  end
-
-  private
-
-  def validate_custom_field(custom_field_id)
-    custom_field = CustomField.find_by(id: custom_field_id)
-    if (custom_field.nil?)
-      return { error: true, message: 'CustomField not found for specifed ID' }
-    end
-
-    if (custom_field.user_id != self.id)
-      return { error: true, message: 'You are not authorized to access this resource.' }
-    end
-
-    return { success: true, custom_field: custom_field }
   end
 end
