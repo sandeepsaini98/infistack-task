@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     redirect_to @user, notice: 'User was successfully updated.'
   end
 
-  def destroy_user
+  def destroy
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end

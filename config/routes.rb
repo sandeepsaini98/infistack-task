@@ -5,11 +5,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'callbacks' 
   } 
 
-  resources :users, only: [:index, :show, :new, :edit, :create] do
-    member do
-      delete 'destroy_user', to: 'users#destroy_user'
-    end
-
+  resources :users do
     resources :custom_fields
   end
   root "home#index" 

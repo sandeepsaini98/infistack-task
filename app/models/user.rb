@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
   
   def update_profile(inputs)
-    self.update!(user_inputs)
+    self.update!(inputs)
 
     return { success: true, user: self }
   end
