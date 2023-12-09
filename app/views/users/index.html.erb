@@ -18,7 +18,7 @@
         <td>
           <%= link_to 'Show', user %>
           <%= link_to 'Edit', edit_user_path(user) %>
-          <%= link_to 'Destroy', url_for(action: :destroy_user, id: user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= button_to "Destroy", user_path(user), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
         </td>
       </tr>
     <% end %>
