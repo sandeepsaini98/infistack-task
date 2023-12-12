@@ -1,4 +1,12 @@
-<h1>Edit User</h1>
-<%= render 'form' %>
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= form_with(model: @user, local: true) do |form| %>
+  <p>Name: <%= form.text_field :name %></p>
+  <p>Email: <%= form.text_field :email %></p>
+  <p>Password: <%= form.password_field :password, required: true %></p>
+  <p>Mobile Number: <%= form.text_field :mobile_number %></p>
+  <p><%= form.submit %></p> 
+<% end %>
+
+<%= render 'custom_field' %>
+<%= link_to 'Add Custom Field', new_user_custom_field_path(@user)%>
+<%= link_to 'Back', user_path(@user) %> 
+

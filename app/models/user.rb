@@ -2,7 +2,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable
 
   validates :name, presence: true
-  validates :mobile_number, presence: true
+  validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "Invalid email format" }
+  validates :password, presence: true
+  validates :mobile_number, presence: true, format: { with: /\A\d{10}\z/, message: "Invalid mobile number format" } 
 
   has_many :custom_fields, dependent: :destroy
   accepts_nested_attributes_for :custom_fields
@@ -33,8 +35,10 @@ class User < ApplicationRecord
   end
   
   def update_profile(inputs)
-    self.update!(inputs)
-
-    return { success: true, user: self }
+    user_inputs = inputs.permit(:name, :email, :password, :mobile_number)
+    self.update!(user_inputs)
+ 
+    { success: true, user: self }
   end
+  
 end

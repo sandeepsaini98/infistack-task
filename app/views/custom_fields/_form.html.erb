@@ -1,7 +1,44 @@
-<!-- app/views/custom_fields/_form.html.erb -->
-<%= form_with(model: [ @user, @user.custom_fields.build ], local: true) do |form| %>
+<%= form_with(model: [ @user, @user.custom_fields.build ], local: true, id: 'custom-field-form') do |form| %>
   <p>Field Name: <%= form.text_field :field_name %></p>
-  <p>Input Type: <%= form.text_field :input_type %></p>
-  <p>Default Value: <%= form.text_field :default_value %></p>
+  
+  <p>Input Type:
+    <%= form.select :input_type, options_for_select(['number', 'date', 'text']), {}, id: 'input_type' %>
+  </p>
+  
+  <p>Default Value: 
+    <span id="default-value-field">
+      <% %>
+    </span>
+  </p>
+  
   <p><%= form.submit %></p>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const inputTypeSelect = document.getElementById('input_type');
+    const defaultValueField = document.getElementById('default-value-field');
+
+    function updateDefaultValueField() {
+      const selectedInputType = inputTypeSelect.value;
+      let inputHtml = '';
+
+      switch (selectedInputType) {
+        case 'number':
+          inputHtml = '<p><input type="number" name="custom_field[default_value]"></p>';
+          break;
+        case 'date':
+          inputHtml = '<p><input type="date" name="custom_field[default_value]"></p>';
+          break;
+        case 'text':
+          inputHtml = '<p><input type="text" name="custom_field[default_value]"></p>';
+          break;
+      }
+      defaultValueField.innerHTML = inputHtml;
+    }
+
+    updateDefaultValueField();
+    inputTypeSelect.addEventListener('change', updateDefaultValueField);
+  });
+</script>
+

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -51,5 +52,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :mobile_number)
+  end
+
+  def authorize_user!
+    unless current_user == User.find(params[:id])
+      redirect_to root_path, alert: "You don't have permission to do that."
+    end
   end
 end

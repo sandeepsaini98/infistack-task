@@ -1,6 +1,9 @@
 class CustomField < ApplicationRecord
   belongs_to :user
-  INPUT_TYPES = %w(number_field text_field date_field)
+  INPUT_TYPES = %w(number text date)
+
+  validates_inclusion_of :input_type, in: INPUT_TYPES
+  validates :field_name, uniqueness: { scope: :user_id }
 
   class << self
     def create_new(inputs, user)

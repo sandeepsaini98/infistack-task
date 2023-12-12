@@ -4,10 +4,12 @@
     <% @user.custom_fields.each do |custom_field| %>
       <li>
         <strong><%= custom_field.field_name %>:</strong> <%= custom_field.default_value %> |
-        <%= link_to 'Edit', edit_user_custom_field_path(@user, custom_field) %>
+        <% if current_user == @user %>
+          <%= link_to 'Edit', edit_user_custom_field_path(@user, custom_field) %> | 
+          <%= link_to 'Add Custom Field', new_user_custom_field_path(@user)%> 
+        <% end %>
       </li>
     <% end %>
   </ul>
 <% end %>
-<%= link_to 'Add Custom Field', new_user_custom_field_path(@user)%> </br> |
 <%= link_to 'Back', user_path(@user) %>

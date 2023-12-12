@@ -2,6 +2,7 @@
   <h1>Hello User Crud!</h1>
    <div> Welcome <%= current_user.email %> </div> 
   <%= link_to 'List Users', users_path %>
+  <%= link_to 'List Custom Fields', user_custom_fields_path(current_user) %>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
 <% else %>
   <h4> Please Sign In </h4>
