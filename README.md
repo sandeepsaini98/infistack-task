@@ -7,16 +7,15 @@
 ## Features
 ``` Sign Up and Sign In with Social Login: ```
 
-1. Users can sign up and sign in using their email and password.
-Social login options are available for GitHub.
-User CRUD Operations:
-
-2. Create, Read, Update, and Delete (CRUD) operations are implemented for the User model.
-Users have fields like Name, Email, Password, and Mobile number.
-Manage Custom Fields:
-
-3. Users can define and manage custom fields associated with their profiles.
-  - Custom fields include Field Name, Input Type , and default value.
+1. Easy Authentication:
+   - Seamlessly sign up and sign in using your email and password.
+   - Social login options are available for Github.
+2. User CRUD Operations:
+   - Create, Read, Update, and Delete operations for the User model.
+   - Standard user fields include Name, Email, Password, and Mobile number.
+3. Manage Custom Fields:
+   - Define and manage custom fields to tailor your profile.
+   - Customize your experience with fields like FieldName, InputType, and default value.
 
 ### Gems Used
 1. Devise: Gem for flexible authentication solution for Rails.
@@ -26,12 +25,12 @@ Manage Custom Fields:
 5. dotenv-rails: Gem to load environment variables from a .env file into ENV in development.
 
 ### Getting Started
-1. Clone the repository: ```git clone https://github.com/sandeepsaini98/infistack-task.git``` 
-2. Install dependencies: bundle install
-3. Set up the database: rails db:migrate
+1. Clone the repository: `git clone https://github.com/sandeepsaini98/infistack-task.git` 
+2. Install dependencies: `bundle install`
+3. Set up the database: `rails db:migrate`
 4. Create a .env file in the project root and configure it with the required environment variables, especially for OAuth credentials.
 
-5. Start the Rails server: rails server
+5. Start the Rails server: `rails server`
 6. Access the application at http://localhost:3000.
 
 ### Documentation:
